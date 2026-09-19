@@ -113,3 +113,37 @@ Chapter / Section Source
         │
         ▼
 Gradio Chat Interface
+
+
+🔎 Retrieval-Augmented Generation
+
+The chatbot uses Retrieval-Augmented Generation (RAG) instead of directly asking the LLM to answer from its pretrained knowledge.
+
+The workflow is:
+
+The user submits a question.
+The question is converted into an embedding.
+The vector database searches for semantically relevant book chunks.
+The retrieved chunks are provided as context to the LLM.
+The LLM generates an answer using the retrieved context.
+Chapter and section metadata are returned with the answer.
+If the information is not available in the retrieved book content, the chatbot explicitly reports that it could not find the information.
+
+This approach helps keep the chatbot grounded in the selected book.
+
+🕷️ Data Collection
+
+The system automatically discovers the book's chapter/subpage URLs from the main Bengali Wikisource page.
+
+Each discovered page is downloaded and processed individually.
+
+The crawler preserves information such as:
+Book
+Author
+Year
+Chapter
+Section
+Page Title
+Source URL
+This metadata is later used to identify the source of retrieved information.
+
